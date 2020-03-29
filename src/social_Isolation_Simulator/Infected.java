@@ -24,13 +24,19 @@ public class Infected {
 	private Grid<Object> grid;
 //	private boolean moved;
 	private int days_infected;
+	private boolean in_hospital;
 	Parameters params = RunEnvironment.getInstance().getParameters();
 	private int max_days = (Integer)params.getValue("max_days");
 
+	private float chance_to_infect = (Float)params.getValue("chance_to_infect");
+	private float prob_dying_after_days = (Float)params.getValue("prob_dying_after_days");
+	private float prob_recovering = (Float)params.getValue("prob_recovering");
+	private float prob_to_go_to_hospital = (Float)params.getValue("prob_to_go_to_hospital");			
 	public Infected(ContinuousSpace<Object> space, Grid<Object> grid) {
 		this.space = space;
 		this.grid = grid;
 		this.days_infected = 0;
+		this.in_hospital = false;
 	}
 
 	@ScheduledMethod(start = 1, interval = 1)
@@ -90,19 +96,23 @@ public class Infected {
 		
 		//infect any random healthy
 		if (healthy.size() > 0) {
-			int index = RandomHelper.nextIntFromTo(0, healthy.size() - 1);
-			Object obj = healthy.get(index);
-			NdPoint spacePt = space.getLocation(obj);
-			Context<Object> context = ContextUtils.getContext(obj);
-			context.remove(obj);
-			Infected infected= new Infected(space, grid);
-			context.add(infected);
-			space.moveTo(infected, spacePt.getX(), spacePt.getY());
-			grid.moveTo(infected, pt.getX(), pt.getY());
+			for (Object obj : healthy) {
+				double random = Math.random();
+				if (random <= chance_to_infect) {
+					NdPoint spacePt = space.getLocation(obj);
+					Context<Object> context = ContextUtils.getContext(obj);
+					context.remove(obj);
+					Infected infected= new Infected(space, grid);
+					context.add(infected);
+					space.moveTo(infected, spacePt.getX(), spacePt.getY());
+					grid.moveTo(infected, pt.getX(), pt.getY());
 
-			Network<Object> net = (Network<Object>) context
-					.getProjection("infection network");
-			net.addEdge(this, infected);
+					Network<Object> net = (Network<Object>) context
+							.getProjection("infection network");
+					net.addEdge(this, infected);
+				}
+			}
+			
 		}
 	}
 	
