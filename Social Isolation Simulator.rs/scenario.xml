@@ -2,6 +2,7 @@
 <Scenario simphonyVersion="2.7.0">
 <repast.simphony.dataLoader.engine.ClassNameDataLoaderAction context="social_Isolation_Simulator" file="repast.simphony.dataLoader.engine.ClassNameDataLoaderAction_0.xml" />
 <repast.simphony.action.data_set context="social_Isolation_Simulator" file="repast.simphony.action.data_set_1.xml" />
-<repast.simphony.action.time_series_chart context="social_Isolation_Simulator" file="repast.simphony.action.time_series_chart_2.xml" />
-<repast.simphony.action.display context="social_Isolation_Simulator" file="repast.simphony.action.display_3.xml" />
+<repast.simphony.action.file_sink context="social_Isolation_Simulator" file="repast.simphony.action.file_sink_2.xml" />
+<repast.simphony.action.time_series_chart context="social_Isolation_Simulator" file="repast.simphony.action.time_series_chart_3.xml" />
+<repast.simphony.action.display context="social_Isolation_Simulator" file="repast.simphony.action.display_4.xml" />
 </Scenario>

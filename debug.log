@@ -994,3 +994,13 @@ Caused by: repast.simphony.parameter.IllegalParameterException: Schema violation
 	at repast.simphony.parameter.ParametersParser.getParameters(ParametersParser.java:54)
 	at repast.simphony.scenario.ScenarioLoader.load(ScenarioLoader.java:175)
 	... 21 more
+ERROR [main] 2020-03-29 20:31:47,868 saf.core.runtime.Boot - null
+java.lang.NullPointerException
+	at saf.core.runtime.Boot.init(Boot.java:79)
+	at saf.core.runtime.Boot.main(Boot.java:247)
+	at repast.simphony.runtime.RepastMain.main(RepastMain.java:43)
+ERROR [main] 2020-03-29 20:31:47,872 saf.core.runtime.Boot - null
+java.lang.NullPointerException
+	at saf.core.runtime.Boot.run(Boot.java:101)
+	at saf.core.runtime.Boot.main(Boot.java:248)
+	at repast.simphony.runtime.RepastMain.main(RepastMain.java:43)

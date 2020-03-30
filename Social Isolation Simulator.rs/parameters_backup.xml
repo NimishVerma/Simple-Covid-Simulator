@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <parameters>
+
 					<parameter name="randomSeed" displayName="Default Random Seed" type="int" 
 						defaultValue="__NULL__"
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
-				<parameter name="prob_dying_after_days" displayName="Probability of dying after (x) days" type="double" 
+		<parameter name="chance_to_infect" displayName="Transmission Rate" type="float" 
 						defaultValue="0.8" 
 						isReadOnly="false" 
-						converter="repast.simphony.parameter.StringConverterFactory$DoubleConverter"
+						converter="repast.simphony.parameter.StringConverterFactory$FloatConverter"
+									
+		/>
+			<parameter name="prob_to_go_to_hospital" displayName="Probability to go to hospital" type="float" 
+						defaultValue="0.4" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$FloatConverter"
+									
+		/>
+				<parameter name="prob_dying_after_days" displayName="Probability of dying after (x) days" type="float" 
+						defaultValue="0.8" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$FloatConverter"
 									
 		/>
 				<parameter name="prob_recovering" displayName="Probability of Recovering" type="float" 

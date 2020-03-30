@@ -4,7 +4,7 @@
   <styles>
     <entry>
       <string>social_Isolation_Simulator.Recovered</string>
-      <string>repast.simphony.visualizationOGL2D.DefaultStyleOGL2D</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
     <entry>
       <string>social_Isolation_Simulator.Dead</string>
@@ -18,11 +18,15 @@
       <string>social_Isolation_Simulator.Infected</string>
       <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
     </entry>
+    <entry>
+      <string>social_Isolation_Simulator.Hospital</string>
+      <string>repast.simphony.visualization.editedStyle.EditedStyle2D</string>
+    </entry>
   </styles>
   <editedStyles>
     <entry>
       <string>social_Isolation_Simulator.Recovered</string>
-      <null/>
+      <string>social_Isolation_Simulator.Recovered.style_3.xml</string>
     </entry>
     <entry>
       <string>social_Isolation_Simulator.Dead</string>
@@ -35,6 +39,10 @@
     <entry>
       <string>social_Isolation_Simulator.Infected</string>
       <string>social_Isolation_Simulator.Infected.style_3.xml</string>
+    </entry>
+    <entry>
+      <string>social_Isolation_Simulator.Hospital</string>
+      <string>social_Isolation_Simulator.Hospital.style_0.xml</string>
     </entry>
   </editedStyles>
   <netStyles>
@@ -57,7 +65,7 @@
     <pType>LAST</pType>
     <duration>-1.0</duration>
     <frequency>REPEAT</frequency>
-    <hashCode>-57249280</hashCode>
+    <hashCode>1539047236</hashCode>
   </schedParams>
   <layoutClassName>foo.bar.baz</layoutClassName>
   <layoutProjection>space</layoutProjection>
@@ -65,19 +73,23 @@
   <layerOrder>
     <entry>
       <string>social_Isolation_Simulator.Recovered</string>
-      <int>0</int>
-    </entry>
-    <entry>
-      <string>social_Isolation_Simulator.Dead</string>
       <int>1</int>
     </entry>
     <entry>
-      <string>social_Isolation_Simulator.Healthy</string>
+      <string>social_Isolation_Simulator.Dead</string>
       <int>2</int>
     </entry>
     <entry>
-      <string>social_Isolation_Simulator.Infected</string>
+      <string>social_Isolation_Simulator.Healthy</string>
       <int>3</int>
+    </entry>
+    <entry>
+      <string>social_Isolation_Simulator.Infected</string>
+      <int>4</int>
+    </entry>
+    <entry>
+      <string>social_Isolation_Simulator.Hospital</string>
+      <int>0</int>
     </entry>
   </layerOrder>
   <projections>

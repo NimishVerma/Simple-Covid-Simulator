@@ -52,7 +52,7 @@ public class SocialIsolationBuilder implements ContextBuilder<Object> {
 		int healthyCount = (Integer)params.getValue("healthy_count");
 		
 		for (int i = 0; i < healthyCount; i++) {
-			int energy = RandomHelper.nextIntFromTo(4, 10);
+//			int energy = RandomHelper.nextIntFromTo(4, 10);
 			context.add(new Healthy(space, grid));
 		}
 
@@ -61,6 +61,14 @@ public class SocialIsolationBuilder implements ContextBuilder<Object> {
 			grid.moveTo(obj, (int) pt.getX(), (int) pt.getY());
 		}
 
+		int hospitalCount = (Integer)params.getValue("hospital_count");
+		for (int i = 0; i < hospitalCount; i++) {
+			context.add(new Hospital(space, grid));
+		}
+		
 		return context;
+		
+		
+		
 	}
 }

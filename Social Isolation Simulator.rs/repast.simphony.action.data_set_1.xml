@@ -17,10 +17,10 @@
   <methodDataSources class="linked-hash-map"/>
   <countSources class="linked-hash-map">
     <entry>
-      <string>Infected Count</string>
+      <string>Dead Count</string>
       <repast.simphony.data2.engine.CountSourceDefinition>
-        <typeName>social_Isolation_Simulator.Infected</typeName>
-        <id>Infected Count</id>
+        <typeName>social_Isolation_Simulator.Dead</typeName>
+        <id>Dead Count</id>
       </repast.simphony.data2.engine.CountSourceDefinition>
     </entry>
     <entry>
@@ -31,10 +31,17 @@
       </repast.simphony.data2.engine.CountSourceDefinition>
     </entry>
     <entry>
-      <string>Dead Count</string>
+      <string>Infected Count</string>
       <repast.simphony.data2.engine.CountSourceDefinition>
-        <typeName>social_Isolation_Simulator.Dead</typeName>
-        <id>Dead Count</id>
+        <typeName>social_Isolation_Simulator.Infected</typeName>
+        <id>Infected Count</id>
+      </repast.simphony.data2.engine.CountSourceDefinition>
+    </entry>
+    <entry>
+      <string>Recovered Count</string>
+      <repast.simphony.data2.engine.CountSourceDefinition>
+        <typeName>social_Isolation_Simulator.Recovered</typeName>
+        <id>Recovered Count</id>
       </repast.simphony.data2.engine.CountSourceDefinition>
     </entry>
   </countSources>

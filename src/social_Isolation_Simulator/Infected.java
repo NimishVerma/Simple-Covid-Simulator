@@ -27,7 +27,8 @@ public class Infected {
 	private boolean in_hospital;
 	Parameters params = RunEnvironment.getInstance().getParameters();
 	private int max_days = (Integer)params.getValue("max_days");
-
+	private boolean symptomatic;
+	public boolean hospitalized;
 	private float chance_to_infect = (Float)params.getValue("chance_to_infect");
 	private float prob_dying_after_days = (Float)params.getValue("prob_dying_after_days");
 	private float prob_recovering = (Float)params.getValue("prob_recovering");
@@ -37,35 +38,63 @@ public class Infected {
 		this.grid = grid;
 		this.days_infected = 0;
 		this.in_hospital = false;
+		this.symptomatic = false;
+		this.hospitalized = false;
 	}
 
 	@ScheduledMethod(start = 1, interval = 1)
 	public void step() {
-		boolean is_dead = check_if_dead();
-		if(!is_dead) {
-			// get the grid location of this Zombie
-			GridPoint pt = grid.getLocation(this);
-
-			// use the GridCellNgh class to create GridCells for
-			// the surrounding neighborhood .
-			GridCellNgh<Object> nghCreator = new GridCellNgh<Object>(grid, pt,
-					Object.class, 1, 1);
-			List<GridCell<Object>> gridCells = nghCreator.getNeighborhood(true);
-			SimUtilities.shuffle(gridCells, RandomHelper.getUniform());
-
-			GridPoint point_to_move = gridCells.get(0).getPoint();
-			moveTowards(point_to_move);
-			infect();
-//			go_to_hospital();
-			this.days_infected ++;
+		//make person symptomatic after max days
+		if(days_infected >= max_days) {
+			symptomatic = true;
 		}
-		
+		if (!hospitalized) {
+			boolean is_dead = check_if_dead();
+			if(!is_dead) {
+				// get the grid location of this Zombie
+				GridPoint pt = grid.getLocation(this);
+	
+				// use the GridCellNgh class to create GridCells for
+				// the surrounding neighborhood .
+				GridCellNgh<Object> nghCreator = new GridCellNgh<Object>(grid, pt,
+						Object.class, 1, 1);
+				List<GridCell<Object>> gridCells = nghCreator.getNeighborhood(true);
+				SimUtilities.shuffle(gridCells, RandomHelper.getUniform());
+	
+				GridPoint point_to_move = gridCells.get(0).getPoint();
+				moveTowards(point_to_move);
+				infect();
+				if (symptomatic)				go_to_hospital();
+				this.days_infected ++;
+			}
+		}
+		else {
+			double random = Math.random();
+			if (random <= prob_recovering) {
+				GridPoint pt = grid.getLocation(this);
+				NdPoint spacePt = space.getLocation(this);
+				Context<Object> context = ContextUtils.getContext(this);
+				context.remove(this);
+				Recovered recovered= new Recovered(space, grid);
+				context.add(recovered);
+				space.moveTo(recovered, spacePt.getX(), spacePt.getY());
+				grid.moveTo(recovered, pt.getX(), pt.getY());
+			}
+		}
+
 		
 		
 	}
-	public void go_to_hospital() {
+
+
+	private void go_to_hospital() {
 		// TODO Auto-generated method stub
 		
+		if(Math.random() < prob_to_go_to_hospital) {
+			//Write code to get nearest hospital
+			//send agent there
+			hospitalized = true;
+		}
 	}
 
 	public void moveTowards(GridPoint pt) {
@@ -99,6 +128,7 @@ public class Infected {
 			for (Object obj : healthy) {
 				double random = Math.random();
 				if (random <= chance_to_infect) {
+					
 					NdPoint spacePt = space.getLocation(obj);
 					Context<Object> context = ContextUtils.getContext(obj);
 					context.remove(obj);
@@ -117,9 +147,15 @@ public class Infected {
 	}
 	
 	
+	
+
+	
+	// ONLY A SYMPTOMATIC PERSON CAN DIE ACCORDING TO THIS LOGIC since they have to be symptomatic
 	public boolean check_if_dead() {
+		double random = Math.random();
 		GridPoint pt = grid.getLocation(this);
-		if(days_infected >= max_days) {
+		//if random number <= prob to die kill the person, and make new agent Dead
+		if(random <= prob_dying_after_days && symptomatic) {
 			NdPoint spacePt = space.getLocation(this);
 			Context<Object>  context = ContextUtils.getContext(this);
 			context.remove(this);
@@ -128,8 +164,7 @@ public class Infected {
 			space.moveTo(dead, spacePt.getX(), spacePt.getY());
 			grid.moveTo(dead, pt.getX(), pt.getY());
 			return true;
-			
-			
+		
 		}
 		return false;
 	}

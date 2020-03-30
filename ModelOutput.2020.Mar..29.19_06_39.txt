@@ -1,0 +1,6 @@
+"tick","Infected Count","Healthy Count","Dead Count"
+1.0,3,999,0
+2.0,5,997,0
+3.0,9,993,0
+4.0,10,992,0
+5.0,10,992,0
