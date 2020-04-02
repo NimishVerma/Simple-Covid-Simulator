@@ -1,7 +1,9 @@
 package social_Isolation_Simulator;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.apache.poi.ss.formula.functions.T;
 
 import repast.simphony.context.Context;
 import repast.simphony.engine.environment.RunEnvironment;
@@ -18,6 +20,7 @@ import repast.simphony.space.grid.Grid;
 import repast.simphony.space.grid.GridPoint;
 import repast.simphony.util.ContextUtils;
 import repast.simphony.util.SimUtilities;
+import repast.simphony.util.collections.IndexedIterable;
 
 public class Infected {
 	private ContinuousSpace<Object> space;
@@ -70,6 +73,7 @@ public class Infected {
 		}
 		else {
 			double random = Math.random();
+			
 			if (random <= prob_recovering) {
 				GridPoint pt = grid.getLocation(this);
 				NdPoint spacePt = space.getLocation(this);
@@ -93,10 +97,31 @@ public class Infected {
 		if(Math.random() < prob_to_go_to_hospital) {
 			//Write code to get nearest hospital
 			//send agent there
+			Hospital nearest_hospital = getNearestHospital();
+			NdPoint target_location = space.getLocation(nearest_hospital);
+			space.moveTo(this, (double)target_location.getX(),(double)target_location.getY());
+			grid.moveTo(this, (int) target_location.getX(), (int) target_location.getY());
 			hospitalized = true;
 		}
 	}
+	public Hospital getNearestHospital() {
+		double minDistSq = Double.POSITIVE_INFINITY;
+		Hospital minAgent = null;
+		NdPoint myLocation;
+		Context context = ContextUtils.getContext(this);
 
+		for (Object agent : context) {
+			if (agent instanceof Hospital) {
+				NdPoint loc = space.getLocation(agent);
+				double distSq = loc.getX() * loc.getX() + loc.getY() * loc.getY();
+				if (distSq < minDistSq) {
+					minDistSq = distSq;
+					minAgent = (Hospital) agent;
+				}
+			}
+		}
+		return minAgent;
+	}
 	public void moveTowards(GridPoint pt) {
 		// only move if we are not already in this grid location
 		if (!pt.equals(grid.getLocation(this))) {
@@ -167,6 +192,13 @@ public class Infected {
 		
 		}
 		return false;
+	}
+	
+	public int getHospitalizedCount() {
+		if (hospitalized == true ) return 1;
+  	
+		return 0;
+		
 	}
 }
 
