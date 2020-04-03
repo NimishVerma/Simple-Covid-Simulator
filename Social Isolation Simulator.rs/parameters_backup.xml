@@ -6,20 +6,8 @@
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
-		<parameter name="number_of_rooms" displayName="Number of rooms in each hospital" type="int" 
-						defaultValue="10" 
-						isReadOnly="false" 
-						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
-									
-		/>
-		<parameter name="hospital_count" displayName="Number of hospitals" type="int" 
-						defaultValue="10" 
-						isReadOnly="false" 
-						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
-									
-		/>
 				<parameter name="prob_dying_after_days" displayName="Probability of dying after (x) days" type="float" 
-						defaultValue="0.8" 
+						defaultValue="0.2" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$FloatConverter"
 									
@@ -30,8 +18,14 @@
 						converter="repast.simphony.parameter.StringConverterFactory$FloatConverter"
 									
 		/>
+				<parameter name="hospital_count" displayName="Number of hospitals" type="int" 
+						defaultValue="4" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
+									
+		/>
 				<parameter name="prob_to_go_to_hospital" displayName="Probability to go to hospital" type="float" 
-						defaultValue="0.4" 
+						defaultValue="0.8" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$FloatConverter"
 									
@@ -40,6 +34,12 @@
 						defaultValue="14" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
+									
+		/>
+				<parameter name="prob_to_social_isolate" displayName="Probability to social isolate" type="float" 
+						defaultValue="0.7" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$FloatConverter"
 									
 		/>
 				<parameter name="healthy_count" displayName="Healthy Count" type="int" 
@@ -58,6 +58,12 @@
 						defaultValue="0.8" 
 						isReadOnly="false" 
 						converter="repast.simphony.parameter.StringConverterFactory$FloatConverter"
+									
+		/>
+				<parameter name="number_of_rooms" displayName="Number of rooms in each hospital" type="int" 
+						defaultValue="10" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
 		</parameters>

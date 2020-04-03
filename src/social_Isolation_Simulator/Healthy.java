@@ -1,9 +1,11 @@
 package social_Isolation_Simulator;
 import java.util.List;
 
+import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.ScheduledMethod;
 import repast.simphony.engine.watcher.Watch;
 import repast.simphony.engine.watcher.WatcherTriggerSchedule;
+import repast.simphony.parameter.Parameters;
 import repast.simphony.query.space.grid.GridCell;
 import repast.simphony.query.space.grid.GridCellNgh;
 import repast.simphony.random.RandomHelper;
@@ -19,7 +21,13 @@ public class Healthy {
 	private ContinuousSpace<Object> space;
 	private Grid<Object> grid;
 	private boolean infected;
+	public boolean social_isolate;
 	private int days_infected;
+	
+	//initialized the parameters
+	Parameters params = RunEnvironment.getInstance().getParameters();
+	
+	private float prob_to_social_isolate = (Float)params.getValue("prob_to_social_isolate");	
 	
 
 	public Healthy(ContinuousSpace<Object> space, Grid<Object> grid) {
@@ -27,11 +35,19 @@ public class Healthy {
 		this.grid = grid;
 		this.infected = false;
 		this.days_infected = 0;
+		
+		if(Math.random() <= prob_to_social_isolate) {
+			this.social_isolate = true;
+		}
+		
 	}
+	
 
 	@ScheduledMethod(start = 1, interval = 1)
 	public void step() {
 //		if(Math.random() <= prob_social_isolation)
+		if(this.social_isolate)
+			return;
 		// get the grid location of this Human
 		GridPoint pt = grid.getLocation(this);
 		// use the GridCellNgh class to create GridCells for

@@ -36,6 +36,12 @@
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
+				<parameter name="prob_to_social_isolate" displayName="Probability to social isolate" type="float" 
+						defaultValue="0.7" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$FloatConverter"
+									
+		/>
 				<parameter name="healthy_count" displayName="Healthy Count" type="int" 
 						defaultValue="1000" 
 						isReadOnly="false" 

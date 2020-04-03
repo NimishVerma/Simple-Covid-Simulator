@@ -27,7 +27,6 @@ public class Infected {
 	private Grid<Object> grid;
 //	private boolean moved;
 	private int days_infected;
-	private boolean in_hospital;
 	
 	//initialized the parameters
 	Parameters params = RunEnvironment.getInstance().getParameters();
@@ -47,7 +46,6 @@ public class Infected {
 		this.space = space;
 		this.grid = grid;
 		this.days_infected = 0;
-		this.in_hospital = false;
 		this.symptomatic = false;
 		this.hospitalized = false;
 		this.hospital = null;
@@ -98,11 +96,7 @@ public class Infected {
 				
 			}
 		}
-
-		
-		
 	}
-
 
 	private void go_to_hospital() {
 		// TODO Auto-generated method stub
@@ -173,8 +167,7 @@ public class Infected {
 		if (healthy.size() > 0) {
 			for (Object obj : healthy) {
 				double random = Math.random();
-				if (random <= chance_to_infect) {
-					
+				if (random <= chance_to_infect && !((Healthy) obj).social_isolate) {
 					NdPoint spacePt = space.getLocation(obj);
 					Context<Object> context = ContextUtils.getContext(obj);
 					context.remove(obj);
@@ -183,8 +176,7 @@ public class Infected {
 					space.moveTo(infected, spacePt.getX(), spacePt.getY());
 					grid.moveTo(infected, pt.getX(), pt.getY());
 
-					Network<Object> net = (Network<Object>) context
-							.getProjection("infection network");
+					Network<Object> net = (Network<Object>) context.getProjection("infection network");
 					net.addEdge(this, infected);
 				}
 			}
