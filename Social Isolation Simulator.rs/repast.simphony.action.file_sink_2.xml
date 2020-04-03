@@ -9,6 +9,7 @@
     <string>Healthy Count</string>
     <string>Dead Count</string>
     <string>Recovered Count</string>
+    <string>Hospitalized Count</string>
   </sourceIds>
   <fileName>ModelOutput.txt</fileName>
   <addTimeStamp>true</addTimeStamp>

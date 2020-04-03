@@ -92,3 +92,98 @@ Caused by: org.pietschy.wizard.InvalidStateException: Missing data source name. 
 	at repast.simphony.data2.wizard.AggregateSourceStep.applyState(AggregateSourceStep.java:68)
 	at repast.simphony.ui.plugin.editor.OptionsContentWizardStepAdapter.apply(OptionsContentWizardStepAdapter.java:39)
 	... 86 more
+FATAL [Thread-5] 2020-04-02 20:00:36,307 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (20.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72)
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:333)
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38)
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205)
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231)
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:352)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.lang.reflect.InvocationTargetException
+	at social_Isolation_Simulator.Infected$$FastClassByCGLIB$$75da8b21.invoke(<generated>)
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53)
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69)
+	... 7 more
+Caused by: java.lang.NullPointerException
+	at social_Isolation_Simulator.Infected.getNearestHospital(Infected.java:139)
+	at social_Isolation_Simulator.Infected.go_to_hospital(Infected.java:110)
+	at social_Isolation_Simulator.Infected.step(Infected.java:80)
+	... 10 more
+FATAL [Thread-6] 2020-04-02 20:00:41,190 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (125.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72)
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:333)
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38)
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205)
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231)
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:352)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.lang.reflect.InvocationTargetException
+	at social_Isolation_Simulator.Infected$$FastClassByCGLIB$$75da8b21.invoke(<generated>)
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53)
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69)
+	... 7 more
+Caused by: java.lang.NullPointerException
+	at social_Isolation_Simulator.Infected.getNearestHospital(Infected.java:139)
+	at social_Isolation_Simulator.Infected.go_to_hospital(Infected.java:110)
+	at social_Isolation_Simulator.Infected.step(Infected.java:80)
+	... 10 more
+FATAL [Thread-7] 2020-04-02 20:03:20,042 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (37.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72)
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:333)
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38)
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205)
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231)
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:352)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.lang.reflect.InvocationTargetException
+	at social_Isolation_Simulator.Infected$$FastClassByCGLIB$$75da8b21.invoke(<generated>)
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53)
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69)
+	... 7 more
+Caused by: java.lang.NullPointerException
+FATAL [Thread-2] 2020-04-02 20:08:05,180 repast.simphony.ui.GUIScheduleRunner - RunTimeException when running the schedule
+Current tick (14.0)
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:72)
+	at repast.simphony.engine.controller.ScheduledMethodControllerAction$ScheduleMethodAllAction.execute(ScheduledMethodControllerAction.java:333)
+	at repast.simphony.engine.schedule.DefaultAction.execute(DefaultAction.java:38)
+	at repast.simphony.engine.schedule.ScheduleGroup.executeList(ScheduleGroup.java:205)
+	at repast.simphony.engine.schedule.ScheduleGroup.execute(ScheduleGroup.java:231)
+	at repast.simphony.engine.schedule.Schedule.execute(Schedule.java:352)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:52)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: java.lang.reflect.InvocationTargetException
+	at social_Isolation_Simulator.Infected$$FastClassByCGLIB$$75da8b21.invoke(<generated>)
+	at net.sf.cglib.reflect.FastMethod.invoke(FastMethod.java:53)
+	at repast.simphony.engine.schedule.DynamicTargetAction.execute(DynamicTargetAction.java:69)
+	... 7 more
+Caused by: java.lang.NullPointerException
+	at social_Isolation_Simulator.Infected.check_if_dead(Infected.java:207)
+	at social_Isolation_Simulator.Infected.step(Infected.java:65)
+	... 10 more
+INFO  [AWT-EventQueue-0] 2020-04-02 20:12:47,478 repast.simphony.ui.widget.MovieMaker - Movie capture has started metaData=[STATUS]
+INFO  [AWT-EventQueue-0] 2020-04-02 20:12:56,732 repast.simphony.ui.widget.MovieMaker - Movie capture has finished metaData=[STATUS]
+INFO  [AWT-EventQueue-0] 2020-04-02 20:15:12,408 repast.simphony.ui.widget.MovieMaker - Movie capture has started metaData=[STATUS]
+INFO  [AWT-EventQueue-0] 2020-04-02 20:15:17,212 repast.simphony.ui.widget.MovieMaker - Movie capture has finished metaData=[STATUS]
+WARN  [Thread-10] 2020-04-02 20:19:30,902 repast.simphony.ui.GUIScheduleRunner - Caught InterruptedException when running simulation, unpausing.
+java.lang.InterruptedException
+	at java.base/java.lang.Object.wait(Native Method)
+	at java.base/java.lang.Object.wait(Object.java:328)
+	at repast.simphony.ui.GUIScheduleRunner.go(GUIScheduleRunner.java:137)
+	at repast.simphony.ui.GUIScheduleRunner$ScheduleLoopRunnable.run(GUIScheduleRunner.java:48)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+INFO  [AWT-EventQueue-0] 2020-04-02 20:25:01,127 repast.simphony.ui.widget.MovieMaker - Movie capture has started metaData=[STATUS]
+INFO  [AWT-EventQueue-0] 2020-04-02 20:28:10,457 repast.simphony.ui.widget.MovieMaker - Movie capture has started metaData=[STATUS]
+INFO  [AWT-EventQueue-0] 2020-04-02 20:28:23,346 repast.simphony.ui.widget.MovieMaker - Movie capture has finished metaData=[STATUS]
+INFO  [AWT-EventQueue-0] 2020-04-02 20:34:54,846 repast.simphony.ui.widget.MovieMaker - Movie capture has started metaData=[STATUS]
+INFO  [AWT-EventQueue-0] 2020-04-02 20:35:47,479 repast.simphony.ui.widget.MovieMaker - Movie capture has finished metaData=[STATUS]

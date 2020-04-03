@@ -45,6 +45,18 @@
       </SeriesData>
     </entry>
     <entry>
+      <string>Hospitalized Count</string>
+      <SeriesData>
+        <label>Hospitalized Count</label>
+        <color>
+          <red>255</red>
+          <green>200</green>
+          <blue>0</blue>
+          <alpha>255</alpha>
+        </color>
+      </SeriesData>
+    </entry>
+    <entry>
       <string>Infected Count</string>
       <SeriesData>
         <label>Infected Count</label>

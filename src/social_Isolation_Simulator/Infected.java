@@ -28,14 +28,21 @@ public class Infected {
 //	private boolean moved;
 	private int days_infected;
 	private boolean in_hospital;
+	
+	//initialized the parameters
 	Parameters params = RunEnvironment.getInstance().getParameters();
-	private int max_days = (Integer)params.getValue("max_days");
+	
 	private boolean symptomatic;
 	public boolean hospitalized;
+	
+	//you retrieve parameters
+	private int max_days = (Integer)params.getValue("max_days");
 	private float chance_to_infect = (Float)params.getValue("chance_to_infect");
 	private float prob_dying_after_days = (Float)params.getValue("prob_dying_after_days");
 	private float prob_recovering = (Float)params.getValue("prob_recovering");
-	private float prob_to_go_to_hospital = (Float)params.getValue("prob_to_go_to_hospital");			
+	private float prob_to_go_to_hospital = (Float)params.getValue("prob_to_go_to_hospital");	
+	private Hospital hospital;
+	
 	public Infected(ContinuousSpace<Object> space, Grid<Object> grid) {
 		this.space = space;
 		this.grid = grid;
@@ -43,14 +50,17 @@ public class Infected {
 		this.in_hospital = false;
 		this.symptomatic = false;
 		this.hospitalized = false;
+		this.hospital = null;
 	}
 
 	@ScheduledMethod(start = 1, interval = 1)
 	public void step() {
+		this.days_infected ++;
 		//make person symptomatic after max days
 		if(days_infected >= max_days) {
 			symptomatic = true;
 		}
+		
 		if (!hospitalized) {
 			boolean is_dead = check_if_dead();
 			if(!is_dead) {
@@ -66,9 +76,10 @@ public class Infected {
 	
 				GridPoint point_to_move = gridCells.get(0).getPoint();
 				moveTowards(point_to_move);
+				
 				infect();
 				if (symptomatic)				go_to_hospital();
-				this.days_infected ++;
+				
 			}
 		}
 		else {
@@ -78,11 +89,13 @@ public class Infected {
 				GridPoint pt = grid.getLocation(this);
 				NdPoint spacePt = space.getLocation(this);
 				Context<Object> context = ContextUtils.getContext(this);
+				this.hospital.current_capacity++;
 				context.remove(this);
 				Recovered recovered= new Recovered(space, grid);
 				context.add(recovered);
 				space.moveTo(recovered, spacePt.getX(), spacePt.getY());
 				grid.moveTo(recovered, pt.getX(), pt.getY());
+				
 			}
 		}
 
@@ -98,9 +111,11 @@ public class Infected {
 			//Write code to get nearest hospital
 			//send agent there
 			Hospital nearest_hospital = getNearestHospital();
+			if(nearest_hospital == null) return;
 			NdPoint target_location = space.getLocation(nearest_hospital);
 			space.moveTo(this, (double)target_location.getX(),(double)target_location.getY());
 			grid.moveTo(this, (int) target_location.getX(), (int) target_location.getY());
+			this.hospital = nearest_hospital;
 			hospitalized = true;
 		}
 	}
@@ -112,14 +127,20 @@ public class Infected {
 
 		for (Object agent : context) {
 			if (agent instanceof Hospital) {
-				NdPoint loc = space.getLocation(agent);
-				double distSq = loc.getX() * loc.getX() + loc.getY() * loc.getY();
-				if (distSq < minDistSq) {
-					minDistSq = distSq;
-					minAgent = (Hospital) agent;
+				Hospital thishospital = (Hospital) agent;
+				if (thishospital.current_capacity > 0 ) {
+					NdPoint currloc = space.getLocation(this);
+					NdPoint loc = space.getLocation(agent);
+					double distSq = currloc.getX()- loc.getX() * currloc.getX()- loc.getX() + currloc.getY() - loc.getY() * currloc.getY() - loc.getY();
+					if (distSq < minDistSq) {
+						minDistSq = distSq;
+						minAgent = (Hospital) agent;
+					}
+					
 				}
 			}
 		}
+		if(minAgent != null)		minAgent.current_capacity --;
 		return minAgent;
 	}
 	public void moveTowards(GridPoint pt) {
@@ -183,6 +204,7 @@ public class Infected {
 		if(random <= prob_dying_after_days && symptomatic) {
 			NdPoint spacePt = space.getLocation(this);
 			Context<Object>  context = ContextUtils.getContext(this);
+			if (this.hospital != null) this.hospital.current_capacity++;
 			context.remove(this);
 			Dead dead = new Dead(space,grid);
 			context.add(dead);

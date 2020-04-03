@@ -14,7 +14,17 @@
     <hashCode>1335495324</hashCode>
   </scheduleParams>
   <atEnd>false</atEnd>
-  <methodDataSources class="linked-hash-map"/>
+  <methodDataSources class="linked-hash-map">
+    <entry>
+      <string>Hospitalized Count</string>
+      <repast.simphony.data2.engine.MethodDataSourceDefinition>
+        <id>Hospitalized Count</id>
+        <className>social_Isolation_Simulator.Infected</className>
+        <methodName>getHospitalizedCount</methodName>
+        <aggType>SUM</aggType>
+      </repast.simphony.data2.engine.MethodDataSourceDefinition>
+    </entry>
+  </methodDataSources>
   <countSources class="linked-hash-map">
     <entry>
       <string>Dead Count</string>

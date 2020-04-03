@@ -31,6 +31,7 @@ public class Healthy {
 
 	@ScheduledMethod(start = 1, interval = 1)
 	public void step() {
+//		if(Math.random() <= prob_social_isolation)
 		// get the grid location of this Human
 		GridPoint pt = grid.getLocation(this);
 		// use the GridCellNgh class to create GridCells for
